@@ -1,0 +1,34 @@
+{% extends 'gestor/base.html' %}
+{% block title %}Campañas - Gestor Publicidad{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center page-header">
+    <h2 class="fw-bold">📋 Campañas publicitarias</h2>
+    <a href="{% url 'campana_create' %}" class="btn btn-primary">+ Nueva Campaña</a>
+</div>
+
+<div class="row">
+    {% for campana in campanas %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ campana.nombre }}</h5>
+                <p class="card-text">
+                    <strong>Inicio:</strong> {{ campana.fecha_inicio }}<br>
+                    <strong>Fin:</strong> {{ campana.fecha_fin }}
+                </p>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'anuncio_list' campana.id %}" class="btn btn-sm btn-outline-info">Ver Anuncios</a>
+                    <a href="{% url 'campana_update' campana.id %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                    <a href="{% url 'campana_delete' campana.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">No hay campañas aún. ¡Crea la primera!</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

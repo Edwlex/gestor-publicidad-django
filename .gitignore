@@ -1,0 +1,30 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.log
+
+# Base de datos (Ignoramos SQLite local, ya que usas MySQL)
+*.sqlite3
+db.sqlite3
+
+# Archivos multimedia (Imágenes subidas por usuarios)
+media/
+
+# Configuración personal y secretos
+.env
+*.env
+
+# Archivos de IDE (VS Code y PyCharm)
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

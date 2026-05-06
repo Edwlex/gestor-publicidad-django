@@ -1,0 +1,52 @@
+{% extends 'gestor/base.html' %}
+{% block title %}Anuncios de {{ campana.nombre }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'campana_list' %}">Campañas</a></li>
+        <li class="breadcrumb-item active">{{ campana.nombre }}</li>
+    </ol>
+</nav>
+
+<div class="d-flex justify-content-between align-items-center page-header">
+    <h2 class="fw-bold">🖼️ Anuncios de "{{ campana.nombre }}"</h2>
+    <a href="{% url 'anuncio_create' campana.id %}" class="btn btn-primary">+ Nuevo Anuncio</a>
+</div>
+
+{% if anuncios %}
+<div class="table-responsive">
+    <table class="table table-hover align-middle bg-white rounded shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Imagen</th>
+                <th>Título</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for anuncio in anuncios %}
+            <tr>
+                <td>
+                    {% if anuncio.imagen %}
+                        <img src="{{ anuncio.imagen.url }}" alt="{{ anuncio.titulo }}" style="max-height: 80px; border-radius: 8px;">
+                    {% else %}
+                        <span class="text-muted">Sin imagen</span>
+                    {% endif %}
+                </td>
+                <td class="fw-semibold">{{ anuncio.titulo }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="{% url 'anuncio_update' anuncio.id %}" class="btn btn-outline-warning">Editar</a>
+                        <a href="{% url 'anuncio_delete' anuncio.id %}" class="btn btn-outline-danger">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">Esta campaña no tiene anuncios todavía. ¡Agrega uno!</div>
+{% endif %}
+{% endblock %}

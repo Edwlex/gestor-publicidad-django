@@ -1,0 +1,16 @@
+{% extends 'gestor/base.html' %}
+{% block title %}{% if object %}Editar Anuncio{% else %}Nuevo Anuncio{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card p-4 mx-auto" style="max-width: 600px;">
+    <h3 class="mb-4">{% if object %}✏️ Editar Anuncio{% else %}➕ Nuevo Anuncio para "{{ campana.nombre }}"{% endif %}</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% if object %}{% url 'anuncio_list' object.campana_id %}{% else %}{% url 'anuncio_list' campana.id %}{% endif %}" class="btn btn-outline-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

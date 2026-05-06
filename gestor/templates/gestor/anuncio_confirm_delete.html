@@ -1,0 +1,17 @@
+{% extends 'gestor/base.html' %}
+{% block title %}Eliminar Anuncio{% endblock %}
+
+{% block content %}
+<div class="card p-4 mx-auto text-center" style="max-width: 500px;">
+    <h3 class="text-danger">⚠️ Eliminar Anuncio</h3>
+    <p>¿Seguro que deseas eliminar el anuncio <strong>{{ object.titulo }}</strong>?</p>
+    {% if object.imagen %}
+        <img src="{{ object.imagen.url }}" alt="{{ object.titulo }}" class="mb-3" style="max-width: 200px; border-radius: 12px;">
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'anuncio_list' object.campana_id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
