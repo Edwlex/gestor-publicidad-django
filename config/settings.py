@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)%#)c8#b#h$ibtyqbq*qw-*vfb2^ulwn&k+u5@b%akl^omi6^f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [https://gestor-publicidad-django.onrender.com/]
+ALLOWED_HOSTS = []
 
 
 # Application definition
